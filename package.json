@@ -9,17 +9,23 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@cloudflare/speedtest": "^1.16.0",
+    "lucide-react": "^1.67.0",
+    "maxmind": "^5.0.8",
     "next": "16.4.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-is": "^19.3.1",
+    "recharts": "^3.10.1",
+    "undici": "^8.12.3"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.5",
+    "eslint": "^4.0.0",
+    "eslint-config-next": "^12.0.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
