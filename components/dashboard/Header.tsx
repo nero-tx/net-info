@@ -43,10 +43,10 @@ export function Header({
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-violet-600 p-[1px] shadow-lg shadow-cyan-500/10">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-linear-to-br from-cyan-500 via-blue-600 to-violet-600 p-px shadow-lg shadow-cyan-500/10">
             <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
               <Activity className="w-5 h-5 text-cyan-400 animate-pulse" />
             </div>
@@ -55,7 +55,7 @@ export function Header({
             <div className="flex items-center gap-2">
               <h1 className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
                 <span>Net</span>
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
                   Info
                 </span>
               </h1>
@@ -75,8 +75,8 @@ export function Header({
           <div
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
               isOnline
-                ? 'bg-emerald-950/50 text-emerald-300 border-emerald-500/30'
-                : 'bg-rose-950/50 text-rose-300 border-rose-500/30'
+                ? "bg-emerald-950/50 text-emerald-300 border-emerald-500/30"
+                : "bg-rose-950/50 text-rose-300 border-rose-500/30"
             }`}
           >
             <span className="relative flex h-2 w-2">
@@ -85,7 +85,7 @@ export function Header({
               )}
               <span
                 className={`relative inline-flex rounded-full h-2 w-2 ${
-                  isOnline ? 'bg-emerald-500' : 'bg-rose-500'
+                  isOnline ? "bg-emerald-500" : "bg-rose-500"
                 }`}
               ></span>
             </span>
@@ -109,7 +109,7 @@ export function Header({
             className={`hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors ${getPhaseColor()}`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
-            <span className="truncate max-w-[200px]">{phaseLabel}</span>
+            <span className="truncate max-w-50">{phaseLabel}</span>
           </div>
 
           {/* Live Monitoring Badge */}
@@ -129,7 +129,9 @@ export function Header({
               aria-label="Rescan Network"
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-colors disabled:opacity-50"
             >
-              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin text-cyan-400' : ''}`} />
+              <RefreshCw
+                className={`w-4 h-4 ${isLoading ? "animate-spin text-cyan-400" : ""}`}
+              />
             </button>
             <button
               onClick={onOpenSettings}

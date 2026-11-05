@@ -98,7 +98,7 @@ export default function Home() {
         <PrivacyBanner />
 
         {/* Main Dashboard Body */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        <main className="container mt-5 mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           {/* Section 1: Main Connection Overview Card */}
           <section aria-label="Connection Overview">
             <ConnectionOverviewCard

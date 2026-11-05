@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Globe, Server, Clock, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Globe, Server, Clock, AlertCircle, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 import { DnsRecordResult } from '@/types/network';
 
 const RECORD_TYPES = ['A', 'AAAA', 'MX', 'TXT', 'NS', 'CNAME'] as const;
@@ -103,7 +103,7 @@ export function DnsInspector() {
           className="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5"
         >
           {loading ? (
-            <span className="inline-block w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+            <Loader2 className="w-4 h-4 animate-spin text-white" />
           ) : (
             <>
               <span>Resolve</span>
@@ -114,8 +114,8 @@ export function DnsInspector() {
       </div>
 
       {/* Presets */}
-      <div className="flex items-center gap-2 mt-3 text-xs text-slate-400">
-        <span className="text-[11px] text-slate-500">Presets:</span>
+      <div className="flex items-center flex-wrap gap-2 mt-3 text-xs text-slate-400">
+        <span className="text-xs text-slate-500">Presets:</span>
         {presets.map((preset) => (
           <button
             key={preset}
@@ -123,7 +123,7 @@ export function DnsInspector() {
               setDomain(preset);
               executeLookup(preset, recordType);
             }}
-            className="text-[11px] text-cyan-400 hover:text-cyan-300 font-mono hover:underline cursor-pointer"
+            className="text-xs text-cyan-400 hover:text-cyan-300 font-mono hover:underline cursor-pointer"
           >
             {preset}
           </button>
