@@ -67,15 +67,15 @@ export function QualityScores({ scores }: QualityScoresProps) {
     <div className="w-full rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
         <div>
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+          <h3 className="text-base font-bold text-white flex items-center gap-2">
             <span>Application Quality Index</span>
           </h3>
-          <p className="text-xs text-slate-400">
+          <p className="text-sm text-slate-400">
             Real-world performance estimates based on bandwidth, RTT latency, jitter, and bufferbloat
           </p>
         </div>
 
-        <div className="flex items-center gap-1.5 text-[11px] text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
+        <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">
           <Info className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
           <span>Heuristic evaluation, not an official industry certification</span>
         </div>

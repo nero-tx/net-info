@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Play,
   Pause,
@@ -12,8 +12,8 @@ import {
   Radio,
   CheckCircle2,
   AlertTriangle,
-} from 'lucide-react';
-import { MonitoringSample } from '@/types/network';
+} from "lucide-react";
+import { MonitoringSample } from "@/types/network";
 import {
   LineChart,
   Line,
@@ -22,7 +22,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
 interface LiveMonitoringPanelProps {
   isActive: boolean;
@@ -30,7 +30,11 @@ interface LiveMonitoringPanelProps {
   samples: MonitoringSample[];
   currentPingMs: number | null;
   currentJitterMs: number;
-  connectionLogs: Array<{ timestamp: number; message: string; type: 'info' | 'warn' | 'error' }>;
+  connectionLogs: Array<{
+    timestamp: number;
+    message: string;
+    type: "info" | "warn" | "error";
+  }>;
   onStart: () => void;
   onPause: () => void;
   onResume: () => void;
@@ -68,18 +72,21 @@ export function LiveMonitoringPanel({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-slate-800/60 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Radio className={`w-4 h-4 ${isActive ? 'text-cyan-400 animate-pulse' : 'text-slate-400'}`} />
+            <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <Radio
+                className={`w-4 h-4 ${isActive ? "text-cyan-400 animate-pulse" : "text-slate-400"}`}
+              />
               <span>Continuous Live Connection Monitoring</span>
             </h3>
             {isActive && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-950 text-cyan-400 border border-cyan-500/40 animate-pulse">
-                {isPaused ? 'PAUSED' : 'STREAMING'}
+              <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-cyan-950 text-cyan-400 border border-cyan-500/40 animate-pulse">
+                {isPaused ? "PAUSED" : "STREAMING"}
               </span>
             )}
           </div>
           <p className="text-xs text-slate-400 mt-0.5">
-            Low-overhead periodic beacon probing (2.5s) to assess latency drift and route stability
+            Low-overhead periodic beacon probing (2.5s) to assess latency drift
+            and route stability
           </p>
         </div>
 
@@ -142,7 +149,7 @@ export function LiveMonitoringPanel({
             Current RTT
           </span>
           <p className="text-xl sm:text-2xl font-bold font-mono text-cyan-400 mt-1">
-            {currentPingMs !== null ? `${currentPingMs} ms` : '—'}
+            {currentPingMs !== null ? `${currentPingMs} ms` : "—"}
           </p>
         </div>
 
@@ -152,7 +159,7 @@ export function LiveMonitoringPanel({
             Rolling Jitter
           </span>
           <p className="text-xl sm:text-2xl font-bold font-mono text-emerald-400 mt-1">
-            {currentJitterMs > 0 ? `${currentJitterMs} ms` : '—'}
+            {currentJitterMs > 0 ? `${currentJitterMs} ms` : "—"}
           </p>
         </div>
 
@@ -162,7 +169,8 @@ export function LiveMonitoringPanel({
             Samples Collected
           </span>
           <p className="text-xl sm:text-2xl font-bold font-mono text-white mt-1">
-            {samples.length} <span className="text-xs font-normal text-slate-500">/ 40 max</span>
+            {samples.length}{" "}
+            <span className="text-xs font-normal text-slate-500">/ 40 max</span>
           </p>
         </div>
 
@@ -179,26 +187,49 @@ export function LiveMonitoringPanel({
       </div>
 
       {/* Live Chart Canvas */}
-      <div className="w-full h-56 sm:h-64 mb-4">
+      <div className="w-full h-56 sm:h-72 mb-4">
         {samples.length === 0 ? (
           <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-xs gap-2">
             <Activity className="w-5 h-5 text-slate-600" />
-            <span>Click &apos;START MONITORING&apos; to begin live background connection tracking.</span>
+            <span>
+              Click &apos;START MONITORING&apos; to begin live background
+              connection tracking.
+            </span>
           </div>
         ) : isMounted ? (
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-              <XAxis dataKey="time" stroke="#64748b" fontSize={11} tickLine={false} />
-              <YAxis stroke="#64748b" fontSize={11} tickLine={false} unit=" ms" />
+            <LineChart
+              data={chartData}
+              margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+            >
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#1e293b"
+                vertical={false}
+              />
+              <XAxis
+                dataKey="time"
+                stroke="#64748b"
+                fontSize={11}
+                tickLine={false}
+              />
+              <YAxis
+                stroke="#64748b"
+                fontSize={11}
+                tickLine={false}
+                unit=" ms"
+              />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#090d16',
-                  borderColor: '#1e293b',
-                  borderRadius: '0.75rem',
-                  fontSize: '0.75rem',
+                  backgroundColor: "#090d16",
+                  borderColor: "#1e293b",
+                  borderRadius: "0.75rem",
+                  fontSize: "0.75rem",
                 }}
-                formatter={(val: any) => [`${Number(val).toFixed(1)} ms`, 'Round-Trip Time']}
+                formatter={(val: any) => [
+                  `${Number(val).toFixed(1)} ms`,
+                  "Round-Trip Time",
+                ]}
               />
               <Line
                 type="monotone"
@@ -216,17 +247,25 @@ export function LiveMonitoringPanel({
       {/* Live Event Log */}
       {connectionLogs.length > 0 && (
         <div className="mt-3 pt-3 border-t border-slate-800">
-          <p className="text-xs font-semibold text-slate-400 mb-2">Monitoring Event Stream</p>
+          <p className="text-xs font-semibold text-slate-400 mb-2">
+            Monitoring Event Stream
+          </p>
           <div className="max-h-24 overflow-y-auto space-y-1 font-mono text-[11px] text-slate-400 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
             {connectionLogs.map((log, idx) => (
               <div key={idx} className="flex items-center gap-2">
-                <span className="text-slate-600">{new Date(log.timestamp).toLocaleTimeString()}</span>
-                {log.type === 'warn' ? (
+                <span className="text-slate-600">
+                  {new Date(log.timestamp).toLocaleTimeString()}
+                </span>
+                {log.type === "warn" ? (
                   <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
                 ) : (
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"></span>
                 )}
-                <span className={log.type === 'warn' ? 'text-amber-300' : 'text-slate-300'}>
+                <span
+                  className={
+                    log.type === "warn" ? "text-amber-300" : "text-slate-300"
+                  }
+                >
                   {log.message}
                 </span>
               </div>

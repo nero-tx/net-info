@@ -98,7 +98,7 @@ export default function Home() {
         <PrivacyBanner />
 
         {/* Main Dashboard Body */}
-        <main className="container mt-5 mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <main className="container mt-5 mx-auto px-2 md:px-6 space-y-6">
           {/* Section 1: Main Connection Overview Card */}
           <section aria-label="Connection Overview">
             <ConnectionOverviewCard
@@ -155,7 +155,7 @@ export default function Home() {
           {/* Section 3: Network Analytics Charts */}
           <section
             aria-label="Network Telemetry Charts"
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           >
             <ThroughputChart data={throughputHistory} unit={unit} />
             <LatencyChart data={latencyHistory} />

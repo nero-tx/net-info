@@ -55,16 +55,16 @@ export function ThroughputChart({ data, unit = 'Mbps' }: ThroughputChartProps) {
 
   return (
     <div className="w-full rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-xl">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+          <h3 className="text-base font-bold text-white flex items-center gap-2">
             <span>Throughput Dynamics</span>
-            <span className="text-[10px] font-normal text-slate-400">({unit} over time)</span>
+            <span className="text-xs font-normal text-slate-400">({unit} over time)</span>
           </h3>
           <p className="text-xs text-slate-400">Real-time downstream & upstream transmission rates</p>
         </div>
 
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex items-center gap-3 text-xs whitespace-nowrap">
           <div className="flex items-center gap-1.5 text-cyan-400">
             <span className="w-2.5 h-2.5 rounded-sm bg-cyan-400"></span>
             <span>Download</span>
@@ -76,9 +76,9 @@ export function ThroughputChart({ data, unit = 'Mbps' }: ThroughputChartProps) {
         </div>
       </div>
 
-      <div className="w-full h-64 sm:h-72">
+      <div className="w-full h-64 sm:h-80">
         {data.length === 0 ? (
-          <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-xs gap-2">
+          <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-sm gap-2">
             <div className="flex gap-2">
               <Download className="w-4 h-4 text-slate-600" />
               <Upload className="w-4 h-4 text-slate-600" />
@@ -87,7 +87,7 @@ export function ThroughputChart({ data, unit = 'Mbps' }: ThroughputChartProps) {
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+            <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -5, bottom: 0 }}>
               <defs>
                 <linearGradient id="downloadGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />

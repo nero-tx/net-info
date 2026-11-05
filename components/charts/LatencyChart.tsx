@@ -47,16 +47,16 @@ export function LatencyChart({ data }: LatencyChartProps) {
 
   return (
     <div className="w-full rounded-2xl bg-slate-900/40 border border-slate-800/80 p-5 backdrop-blur-xl">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <div>
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
+          <h3 className="text-base font-bold text-white flex items-center gap-2">
             <span>Latency & Bufferbloat Dynamics</span>
-            <span className="text-[10px] font-normal text-slate-400">(ms)</span>
+            <span className="text-xs font-normal text-slate-400">(ms)</span>
           </h3>
           <p className="text-xs text-slate-400">Idle vs traffic-loaded round-trip transmission latency</p>
         </div>
 
-        <div className="flex items-center gap-3 text-xs">
+        <div className="flex items-center gap-3 text-xs whitespace-nowrap">
           <div className="flex items-center gap-1.5 text-amber-400">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
             <span>Idle Ping</span>
@@ -68,9 +68,9 @@ export function LatencyChart({ data }: LatencyChartProps) {
         </div>
       </div>
 
-      <div className="w-full h-64 sm:h-72">
+      <div className="w-full h-64 sm:h-80">
         {data.length === 0 ? (
-          <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-xs gap-2">
+          <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-slate-800 rounded-xl text-slate-500 text-sm gap-2">
             <Clock className="w-5 h-5 text-slate-600" />
             <span>No latency samples recorded yet. Start a test to measure round-trip times.</span>
           </div>

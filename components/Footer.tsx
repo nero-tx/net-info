@@ -54,13 +54,13 @@ export function Footer({
 }: FooterProps) {
   return (
     <footer className="w-full border-t border-slate-900 bg-slate-950/80 py-6 mt-12 text-xs text-slate-500">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="container mx-auto px-2 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <ShieldCheck
-            className="w-4 h-4 text-emerald-400"
+            className="size-4 text-emerald-400 shrink-0"
             aria-hidden="true"
           />
-          <span>{statusText}</span>
+          <span className="text-sm">{statusText}</span>
         </div>
 
         <div className="flex items-center gap-4">
@@ -76,12 +76,12 @@ export function Footer({
                   aria-label={label}
                   className="text-slate-500 hover:text-cyan-400 transition-colors"
                 >
-                  {Icon && <Icon className="w-4 h-4" />}
+                  {Icon && <Icon className="size-5" />}
                 </a>
               );
             })}
           </nav>
-          <div className="text-[11px] text-slate-600">{poweredByText}</div>
+          <div className="text-sm text-slate-600">{poweredByText}</div>
         </div>
       </div>
     </footer>

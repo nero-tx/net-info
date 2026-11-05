@@ -83,7 +83,7 @@ export function PrivacyBanner() {
 
   return (
     <div className="w-full border-b border-amber-500/15 bg-linear-to-r from-zinc-950 via-[#17120d] to-zinc-950 backdrop-blur-xl">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div className="container mx-auto px-2 md:px-6 py-3">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div className="flex items-start gap-3">
             <div className="size-10 grid place-items-center rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">

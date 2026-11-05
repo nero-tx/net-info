@@ -104,7 +104,8 @@ export function SpeedTestControls({
   const upFormatted = formatSpeed(uploadMbps, unit);
 
   const formatMetricMs = (val: number | undefined | null) => {
-    if (val === undefined || val === null || val <= 0 || !Number.isFinite(val)) return '—';
+    if (val === undefined || val === null || val <= 0 || !Number.isFinite(val))
+      return "—";
     if (val >= 100) return Math.round(val).toString();
     return (Math.round(val * 10) / 10).toFixed(1);
   };
@@ -112,57 +113,72 @@ export function SpeedTestControls({
   return (
     <div className="w-full flex flex-col items-center gap-6">
       {/* 7-Step Horizontal Progress Pipeline */}
-      <div className="w-full max-w-3xl overflow-x-auto pb-2 scrollbar-none">
-        <div className="flex items-center justify-between min-w-125 px-2">
+      <nav
+        aria-label="Speed test progress"
+        className="w-full max-w-3xl overflow-x-auto pb-2 scrollbar-none"
+      >
+        <ol className="relative flex items-start justify-between min-w-125 px-2 sm:px-4">
+          <div
+            aria-hidden="true"
+            className="absolute left-6 right-6 sm:left-8 sm:right-8 top-3.5 sm:top-4 h-0.5 bg-slate-800 rounded-full"
+          />
+
+          <div
+            aria-hidden="true"
+            className="absolute left-6 sm:left-8 top-3.5 sm:top-4 h-0.5 rounded-full bg-linear-to-r from-emerald-500 to-emerald-400 transition-[width] duration-500 ease-out"
+            style={{
+              width: `calc((100% - 3rem) * ${
+                Math.max(
+                  0,
+                  Math.min(currentPhaseIndex, PHASES_LIST.length - 1),
+                ) / Math.max(PHASES_LIST.length - 1, 1)
+              })`,
+            }}
+          />
+
           {PHASES_LIST.map((step, idx) => {
             const isCompleted = currentPhaseIndex > idx || phase === "finished";
-            const isCurrent = currentPhaseIndex === idx;
+
+            const isCurrent = currentPhaseIndex === idx && phase !== "finished";
 
             return (
-              <div
+              <li
                 key={step.id}
-                className="flex items-center flex-1 last:flex-none"
+                aria-current={isCurrent ? "step" : undefined}
+                className="relative z-10 flex flex-col items-center gap-1.5 min-w-0"
               >
-                <div className="flex flex-col items-center">
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300 border ${
-                      isCompleted
-                        ? "bg-emerald-500 text-slate-950 border-emerald-400 shadow-sm shadow-emerald-500/50"
-                        : isCurrent
-                          ? "bg-cyan-500 text-slate-950 border-cyan-300 shadow-md shadow-cyan-500/50 animate-pulse"
-                          : "bg-slate-900 text-slate-500 border-slate-800"
-                    }`}
-                  >
-                    {isCompleted ? (
-                      <CheckCircle className="w-3.5 h-3.5" />
-                    ) : (
-                      idx + 1
-                    )}
-                  </div>
-                  <span
-                    className={`text-[10px] mt-1 font-medium whitespace-nowrap transition-colors ${
-                      isCurrent
-                        ? "text-cyan-400 font-bold"
-                        : isCompleted
-                          ? "text-slate-300"
-                          : "text-slate-500"
-                    }`}
-                  >
-                    {step.label}
-                  </span>
+                <div
+                  className={`flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border text-[10px] font-bold transition-all duration-300 ${
+                    isCompleted
+                      ? "bg-emerald-500 border-emerald-400 text-slate-950 shadow-[0_0_12px_-2px] shadow-emerald-500/60"
+                      : isCurrent
+                        ? "bg-cyan-500 border-cyan-300 text-slate-950 shadow-[0_0_14px_-2px] shadow-cyan-500/70 ring-4 ring-cyan-500/15"
+                        : "bg-slate-900 border-slate-700 text-slate-500"
+                  }`}
+                >
+                  {isCompleted ? (
+                    <CheckCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                  ) : (
+                    idx + 1
+                  )}
                 </div>
-                {idx < PHASES_LIST.length - 1 && (
-                  <div
-                    className={`flex-1 h-0.5 mx-2 transition-all duration-300 ${
-                      isCompleted ? "bg-emerald-500/60" : "bg-slate-800"
-                    }`}
-                  />
-                )}
-              </div>
+
+                <span
+                  className={`text-[10px] sm:text-xs whitespace-nowrap font-medium transition-colors ${
+                    isCurrent
+                      ? "text-cyan-400 font-semibold"
+                      : isCompleted
+                        ? "text-slate-300"
+                        : "text-slate-500"
+                  }`}
+                >
+                  {step.label}
+                </span>
+              </li>
             );
           })}
-        </div>
-      </div>
+        </ol>
+      </nav>
 
       {/* Primary Action Buttons */}
       <div className="flex items-center gap-3">
@@ -263,7 +279,9 @@ export function SpeedTestControls({
             <span className="text-xl sm:text-2xl font-bold font-mono text-amber-400 truncate">
               {formatMetricMs(idlePingMs)}
             </span>
-            <span className="text-[10px] text-slate-400 font-mono shrink-0">ms</span>
+            <span className="text-[10px] text-slate-400 font-mono shrink-0">
+              ms
+            </span>
           </div>
         </div>
 
@@ -279,7 +297,9 @@ export function SpeedTestControls({
             <span className="text-xl sm:text-2xl font-bold font-mono text-blue-400 truncate">
               {formatMetricMs(loadedPingMs)}
             </span>
-            <span className="text-[10px] text-slate-400 font-mono shrink-0">ms</span>
+            <span className="text-[10px] text-slate-400 font-mono shrink-0">
+              ms
+            </span>
           </div>
         </div>
 
@@ -295,7 +315,9 @@ export function SpeedTestControls({
             <span className="text-xl sm:text-2xl font-bold font-mono text-emerald-400 truncate">
               {formatMetricMs(jitterMs)}
             </span>
-            <span className="text-[10px] text-slate-400 font-mono shrink-0">ms</span>
+            <span className="text-[10px] text-slate-400 font-mono shrink-0">
+              ms
+            </span>
           </div>
         </div>
 
